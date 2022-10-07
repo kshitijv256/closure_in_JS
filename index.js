@@ -1,30 +1,37 @@
 const todoList = () => {
     all = []
+
+    // Add items to the list
     const add = (todoItem) => {
       all.push(todoItem)
     }
+
+    // mark an item as done
     const markAsComplete = (index) => {
       all[index].completed = true
     }
-  
+     // List all items which are overdue
     const overdue = () => {
       return all.filter((item) => {
         return item.dueDate <= yesterday && item.completed === false
       })
     }
-  
+    
+    // List all items which are due today
     const dueToday = () => {
       return all.filter((item) => {
         return item.dueDate === today
       })
     }
   
+    // List all items which are due later
     const dueLater = () => {
         return all.filter((item) => {
             return item.dueDate >= tomorrow
           })
     }
   
+    // Utility function to print the list
     const toDisplayableList = (list) => {
       let mylist = [];
         list.forEach((item) => {
@@ -45,6 +52,7 @@ const todoList = () => {
         return mylist.join("\n")
     }
   
+    // expose the functions
     return { all, add, markAsComplete, overdue, dueToday, dueLater, toDisplayableList };
   }
   
